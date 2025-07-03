@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Info Viewer</title>
+  <style>
+    body { font-family: monospace; background: #000; color: #0f0; padding: 20px; white-space: pre-line; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+<div id="output">Loading user info...</div>
+
+<script>
+const username = "Samofficial007";
+const apiURL = `https://mahir.free.nf/index.php?username=${username}`;
+const proxy = "https://cors-anywhere.herokuapp.com/";
+
+fetch(proxy + apiURL)
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("output").textContent = data;
+  })
+  .catch(err => {
+    document.getElementById("output").innerHTML = '<span class="error">Error loading data: ' + err.message + '</span>';
+  });
+</script>
+
+</body>
+</html>
