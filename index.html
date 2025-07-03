@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>User Info Viewer</title>
+  <meta charset="UTF-8" />
+  <title>Telegram Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: monospace; background: #000; color: #0f0; padding: 20px; white-space: pre-line; }
-    .error { color: red; }
+    body {
+      background: #121212;
+      color: #00ffcc;
+      font-family: monospace;
+      padding: 20px;
+      white-space: pre-line;
+    }
   </style>
 </head>
 <body>
-<div id="output">Loading user info...</div>
+  <h2>📡 Loading Telegram Info...</h2>
+  <div id="userinfo">⏳ Please wait...</div>
 
-<script>
-const username = "Samofficial007";
-const apiURL = `https://mahir.free.nf/index.php?username=${username}`;
-const proxy = "https://cors-anywhere.herokuapp.com/";
+  <script>
+    const username = "Samofficial007";
+    const apiURL = `https://corsproxy.io/?https://mahir.free.nf/index.php?username=${username}`;
 
-fetch(proxy + apiURL)
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("output").textContent = data;
-  })
-  .catch(err => {
-    document.getElementById("output").innerHTML = '<span class="error">Error loading data: ' + err.message + '</span>';
-  });
-</script>
-
+    fetch(apiURL)
+      .then(res => res.text())
+      .then(text => {
+        document.getElementById('userinfo').innerText = text;
+      })
+      .catch(err => {
+        document.getElementById('userinfo').innerText = "❌ Error loading user info:\n" + err;
+      });
+  </script>
 </body>
 </html>
